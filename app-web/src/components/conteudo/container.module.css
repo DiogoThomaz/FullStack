@@ -1,0 +1,14 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.5em;
+    box-shadow: #c0bebe 0px 0px 10px 0px;
+    border-radius: 10px;
+    width: auto;
+    height: auto;
+    background-color: #FFFFFF;
+}
+

@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@material-ui/icons": "^4.11.3",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.12",
+    "@mui/styled-engine-sc": "^5.11.11",
+    "styled-components": "^5.3.8"
+  }
+}

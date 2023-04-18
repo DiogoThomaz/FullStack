@@ -1,0 +1,37 @@
+from __future__ import print_function
+
+import datetime
+import os.path
+
+from google.auth.transport.requests import Request
+from google.oauth2 import service_account, credentials
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+
+
+
+# If modifying these scopes, delete the file token.json.
+SCOPES = ['https://www.googleapis.com/auth/calendar']
+__path__ = os.path.dirname(os.path.abspath(__file__))
+with open(os.path.join(__path__, 'credentials.json'), 'r') as f:
+    creds = f.read()
+
+creds = service_account.Credentials.from_service_account_info(filename=creds, scopes=SCOPES, info=None, subject=None, token_uri=None, additional_claims=None)
+
+CAL = build('calendar', 'v3', http=creds.authorize(Request()))
+
+GMT_OFF = '-03:00'      # PDT/MST/GMT-7
+EVENT = {
+    'summary': 'Google I/O 2015',
+    'start':  {'dateTime': '2023-05-05T10:00:00%s' % GMT_OFF},
+    'end':    {'dateTime': '2023-05-05T10:25:00%s' % GMT_OFF},
+}
+e = CAL.events().insert(calendarId='primary',
+        sendNotifications=True, body=EVENT).execute()
+print('''*** %r event added:
+    Start: %s
+    End:   %s''' % (e['summary'].encode('utf-8'),
+        e['start']['dateTime'], e['end']['dateTime']))
+

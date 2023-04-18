@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+
+}
+
+.main {
+  min-height: 70vh;
+  text-align: center;
+  padding: 2em;
+}
+
+.main h2 {
+  margin-bottom: 0.8em;
+}
